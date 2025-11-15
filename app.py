@@ -22,4 +22,4 @@ if st.button("Summarize Text"):
         st.warning("Please enter some text to summarize.")
 
 st.markdown("---")
-st.info("Powered by OpenAI's gpt-4o-mini model.")
+st.info("Powered by OpenAI's gpt-4o-mini model developed by Satyam.")
