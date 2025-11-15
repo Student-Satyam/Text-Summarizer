@@ -1,3 +1,28 @@
+if "OPENAI_API_KEY" not in os.environ:
+    # Try to load from Streamlit secrets if running on Streamlit Cloud or locally with .streamlit/secrets.toml
+    if hasattr(st, 'secrets') and 'OPENAI_API_KEY' in st.secrets:
+        os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+    else:
+        st.error("OPENAI_API_KEY environment variable or Streamlit secret not found. Please set it.")
+        st.stop()
+
+try:
+    client = OpenAI()
+except Exception as e:
+    st.error(f"Failed to initialize OpenAI client: {e}. Please check your API key.")
+    st.stop()
+
+def summarize(text):
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": f"Summarize in simple English: {text}"}]
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"An error occurred during summarization: {e}"
+
+
 import streamlit as st
 st.set_page_config(page_title="Text Summarizer", page_icon="📝")
 
