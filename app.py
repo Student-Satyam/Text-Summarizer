@@ -1,5 +1,5 @@
 import os
-
+from openai import OpenAI
 if "OPENAI_API_KEY" not in os.environ:
     # Try to load from Streamlit secrets if running on Streamlit Cloud or locally with .streamlit/secrets.toml
     if hasattr(st, 'secrets') and 'OPENAI_API_KEY' in st.secrets:
