@@ -62,7 +62,7 @@ with col1:
             st.warning("Please enter some text to summarize.")
 
 with col2:
-    if st.button("Summarize in 3-5 Lines"):
+    if st.button("Summarize in short"):
         if user_input:
             with st.spinner("Summarizing in 3-5 lines..."):
                 summary = summarize(user_input, style="short")
